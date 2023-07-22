@@ -1,4 +1,4 @@
-package com.gachon.healthdiary.Interface;
+package com.gachon.healthdiary.Repository;
 
 import com.gachon.healthdiary.Entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;

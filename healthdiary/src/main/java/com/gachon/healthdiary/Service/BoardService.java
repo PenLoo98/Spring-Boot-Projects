@@ -1,7 +1,7 @@
 package com.gachon.healthdiary.Service;
 
 import com.gachon.healthdiary.Entity.Board;
-import com.gachon.healthdiary.Interface.BoardRepository;
+import com.gachon.healthdiary.Repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

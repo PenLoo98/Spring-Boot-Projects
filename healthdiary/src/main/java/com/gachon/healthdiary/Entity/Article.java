@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "article")
 @NoArgsConstructor
 public class Article {
 
@@ -15,10 +15,10 @@ public class Article {
     @GeneratedValue(generator = "increment")
     private Long id;
 
-    @Column(table = "title")
+    @Column(name = "title")
     private String title;
 
-    @Column(table = "content")
+    @Column(name = "content")
     private String content;
 
     public Article(Long id, String title, String content) {
