@@ -1,14 +1,20 @@
 package com.gachon.healthdiary.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@AllArgsConstructor
+@ToString
 @Entity(name = "article")
 @NoArgsConstructor
+@Data
 public class Article {
 
     @Id
@@ -20,19 +26,4 @@ public class Article {
 
     @Column(name = "content")
     private String content;
-
-    public Article(Long id, String title, String content) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 }

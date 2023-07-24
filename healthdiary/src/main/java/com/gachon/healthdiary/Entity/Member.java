@@ -1,11 +1,17 @@
 package com.gachon.healthdiary.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
+@AllArgsConstructor
+@ToString
 @Entity(name="member")
 @NoArgsConstructor
+@Data
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +23,4 @@ public class Member {
 
     @Column(name="password")
     private String password;
-
-    public Member(Long id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
 }
