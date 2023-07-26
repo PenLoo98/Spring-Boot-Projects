@@ -19,6 +19,7 @@ public class Article {
 
     @Id
     @GeneratedValue(generator = "increment")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "title")

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -95,5 +96,22 @@ public class MemberController {
 
         // 뷰페이지 반환
         return "redirect:/members/" + editedMember.getId();
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteMember(@PathVariable Long id, RedirectAttributes reattr){
+        // 삭제하려는 data를 Repository에서 찾음
+        Member target = memberRepository.findById(id).orElse(null);
+        log.info(target.toString());
+
+        // 삭제하려는 Entity
+        if(target != null){
+            memberRepository.delete(target);
+            reattr.addFlashAttribute("deleteMsg", "member id="+id+" delete success");
+            log.info("member id= "+id+" delete success");
+        }
+
+        // 뷰페이지 반환
+        return "redirect:/members";
     }
 }
