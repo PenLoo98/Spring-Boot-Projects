@@ -23,4 +23,16 @@ public class Member {
 
     @Column(name="password")
     private String password;
+
+    /**기존 Entity 값 갱신*/
+    public void patch(Member member) {
+        // email 변경사항이 있다면 갱신
+        if(member.email != null){
+            this.email = member.email;
+        }
+        // password 변경사항이 있다면 갱신
+        if(member.password != null){
+            this.password = member.password;
+        }
+    }
 }
