@@ -59,4 +59,21 @@ public class ArticleAPIController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build() :
                 ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+    
+    // Transmission Test
+    @PostMapping("/transaction-test")
+    public ResponseEntity<List<Article>> transactionTest
+        (@RequestBody List<ArticleForm> dtos){
+        // 1. 서비스에 dtos를 입력하여 보냄
+        List<Article> createdList = articleService.createArticles(dtos);
+
+        // 2. 돌아온 응답이 검증 후 적절한 반환하기
+        return createdList == null ?
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).build():
+            ResponseEntity.status(HttpStatus.OK).body(createdList);
+
+        // 3. 제대로된 응답일 경우 OK 응답 반환
+
+
+    }
 }
