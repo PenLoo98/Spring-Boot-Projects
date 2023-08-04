@@ -15,6 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+@Transactional
 @SpringBootTest
 class ArticleServiceTest {
     @Autowired
@@ -107,12 +108,73 @@ class ArticleServiceTest {
         Long id = 1L;
         String title = "제목 1 수정";
         String content = "content 1 수정";
+
         ArticleForm dto = new ArticleForm(id,title,content);
-        Article expected = dto.toEntity();
+        Article expected = new Article(id,title,content);
 
         // 2. 실제 데이터
         Article actual = articleService.update(id,dto);
 
         // 3. 비교 및 검증
+        assertEquals(expected.toString(), actual.toString());
+    }
+
+    @Test
+    void update_성공_존재하는_id와title만_있는_입력() {
+        // 1. 예측 데이터
+        Long id = 1L;
+        String title = "제목 1 수정";
+
+        ArticleForm dto = new ArticleForm(id,title,null);
+        Article expected = new Article(id,title,"1111");
+
+        // 2. 실제 데이터
+        Article actual = articleService.update(id,dto);
+
+        // 3. 비교 및 검증
+        assertEquals(expected.toString(), actual.toString());
+    }
+
+    @Test
+    void update_실패_존재하지_않는_id입력(){
+        // 1. 예측 데이터
+        Long id = -1L;
+        String title = "제목 4 수정";
+        String content = "내용 4 수정";
+
+        ArticleForm dto = new ArticleForm(id,title,content);
+        Article expected = null;
+
+        // 2. 실제 데이터
+        Article actual = articleService.update(id,dto);
+
+        // 3. 비교 및 검증
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void delete_성공_존재하는_ID_입력() {
+        // 1. 예상 데이터
+        Long id = 1L;
+        Article expected = articleRepository.findById(id).orElse(null);
+
+        // 2. 실제 데이터
+        Article actual = articleService.delete(id);
+
+        // 3. 비교 및 검증
+        assertEquals(expected.toString(), actual.toString());
+    }
+
+    @Test
+    void delete_실패_없는_ID_입력() {
+        // 1. 예상 데이터
+        Long id = -1L;
+        Article expected = null;
+
+        // 2. 실제 데이터
+        Article actual = articleService.delete(id);
+
+        // 3. 비교 및 검증
+        assertEquals(expected, actual);
     }
 }
