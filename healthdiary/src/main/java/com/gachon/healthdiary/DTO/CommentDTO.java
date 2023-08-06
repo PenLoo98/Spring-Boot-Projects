@@ -16,7 +16,7 @@ public class CommentDTO {
     private String nickname;
     private String body;
 
-    public static CommentDTO createCommentDTO(Comment comment) {
+    public static CommentDTO entityToDTO(Comment comment) {
         return new CommentDTO(
                 comment.getId(),
                 comment.getArticle().getId(),
