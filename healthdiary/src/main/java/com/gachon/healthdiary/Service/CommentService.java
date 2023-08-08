@@ -28,7 +28,7 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentDTO createCommentDTO(Long articleId, CommentDTO dto) {
+    public CommentDTO postComment(Long articleId, CommentDTO dto) {
         // 1. 게시글 조회 및 예외 발생
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new IllegalArgumentException("댓글 생성 실패! 대상 게시글이 없습니다."));
@@ -41,5 +41,34 @@ public class CommentService {
 
         // 4. DTO로 변환해 반환
         return CommentDTO.entityToDTO(created);
+    }
+
+    @Transactional
+    public CommentDTO patchComment(Long commentId, CommentDTO dto) {
+        // 1. 댓글 조회 및 예외 발생
+        Comment target = commentRepository.findById(commentId)
+                .orElseThrow( () -> new IllegalArgumentException("댓글 수정 실패! 대상 댓글이 없습니다.") );
+
+        // 2. 댓글 수정
+        target.patch(dto);
+
+        // 3. DB에 갱신
+        Comment updated = commentRepository.save(target);
+
+        // 4. 결과 반환
+        return CommentDTO.entityToDTO(updated);
+    }
+
+    @Transactional
+    public CommentDTO deleteComment(Long commentId){
+        // 1. 댓글 조회 및 예외 발생
+        Comment target = commentRepository.findById(commentId)
+                .orElseThrow( () -> new IllegalArgumentException("댓글 삭제 실패! 대상이 없습니다."));
+
+        // 2. 댓글 삭제
+        commentRepository.delete(target);
+
+        // 3. 결과 반환 (Entity -> DTO)
+        return CommentDTO.entityToDTO(target);
     }
 }

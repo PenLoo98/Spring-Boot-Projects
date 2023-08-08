@@ -48,4 +48,23 @@ public class Comment {
                 article
         );
     }
+
+    public void patch(CommentDTO dto) {
+        // 예외 발생
+        if(this.id != dto.getId()){
+            throw new IllegalArgumentException("댓글 수정 실패! 잘못된 comment id가 입력되었습니다.");
+        }
+        if(this.getArticle().getId() != dto.getArticleId()){
+            throw new IllegalArgumentException("댓글 수정 실패! 잘못된 article id가 입력되었습니다.");
+        }
+
+        // 객체 갱신
+        if(dto.getNickname() != null){
+            this.nickname = dto.getNickname();
+        }
+        if(dto.getBody() != null){
+            this.body = dto.getBody();
+        }
+
+    }
 }

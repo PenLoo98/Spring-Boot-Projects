@@ -31,7 +31,7 @@ public class CommentAPIController {
         public ResponseEntity<CommentDTO> commentPOST(@PathVariable Long articleId,
                                                       @RequestBody CommentDTO dto){
             // 서비스에서 CREATE 처리
-            CommentDTO createdDTO = commentService.createCommentDTO(articleId,dto);
+            CommentDTO createdDTO = commentService.postComment(articleId,dto);
 
             // 결과 응답
             if(createdDTO==null){
@@ -43,7 +43,25 @@ public class CommentAPIController {
         }
 
         // 3. 댓글 수정
+        @PatchMapping("/comments/{commentId}")
+        public ResponseEntity<CommentDTO> commentPATCH(@PathVariable Long commentId,
+                                                @RequestBody CommentDTO dto){
+            // 서비스에서 로직처리
+            CommentDTO updatedDTO = commentService.patchComment(commentId, dto);
+
+            // 결과 응답
+            return ResponseEntity.status(HttpStatus.OK).body(updatedDTO);
+
+        }
 
         // 4. 댓글 삭제
+        @DeleteMapping("/comments/{commentId}")
+        public ResponseEntity<CommentDTO> commentDELETE(@PathVariable Long commentId){
+            // 서비스에서 로직처리
+            CommentDTO deletedDTO = commentService.deleteComment(commentId);
+
+            // 결과 응답
+            return ResponseEntity.status(HttpStatus.OK).body(deletedDTO);
+        }
 
 }
