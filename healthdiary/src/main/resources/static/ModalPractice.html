@@ -1,0 +1,19 @@
+<script>
+    // 1. 요소 선택
+    const trigger = document.querySelector("#trigger-btn");
+    const h1 = document.querySelector("#modal-title");
+    const body = document.querySelector("#modal-body");
+
+    trigger.addEventListener("show.bs.modal", function (event){
+        const updateBtn = event.relatedTarget;
+        // 2. 데이터 불러오기
+        const title = updateBtn.getAttribute("data-custom-title");
+        const text = updateBtn.getAttribute("data-custom-text");
+
+        // 3. 데이터 갱신
+        h1.innerText = title;
+        body.innerText = text;
+    });
+
+
+</script>

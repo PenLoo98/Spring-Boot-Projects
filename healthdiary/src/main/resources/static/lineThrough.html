@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>셀프체크</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <ul>
+        <li class="prerequisite">HTML</li>
+        <li class="prerequisite">CSS</li>
+        <li class="prerequisite">JavaScript</li>
+        <li class="prerequisite">Java</li>
+        <li>SQL</li>
+        <li>Spring Boot</li>
+    </ul>
+    <script>
+        // 취소선을 적용할 요소 지정
+        const prerequisites = document.querySelectorAll(".prerequisite");
+        // 취소선으로 상태변경
+        prerequisites.forEach(subject =>{
+            subject.style.textDecoration = "line-through"
+        })
+    </script>
+</body>
+</html>
