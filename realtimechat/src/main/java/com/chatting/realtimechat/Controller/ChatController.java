@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
-    // 24:52 - https://youtu.be/TywlS9iAZCM?t=1492
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(
