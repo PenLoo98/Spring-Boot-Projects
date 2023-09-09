@@ -1,6 +1,6 @@
-package com.gachon.healthdiary.Entity;
+package com.forum.writingCRUD.Entity;
 
-import com.gachon.healthdiary.DTO.CommentDTO;
+import com.forum.writingCRUD.DTO.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-
-
-@Entity(name="comment")
+@Entity(name="forum_comment")
 @Data
 @ToString
 @AllArgsConstructor
@@ -28,15 +26,15 @@ public class Comment {
     private String body;
 
     @ManyToOne
-    @JoinColumn(name="article_id")
-    private Article article;
+    @JoinColumn(name="forum_id")
+    private Forum forum;
 
-    public static Comment dtoToEntity(CommentDTO dto, Article article) {
+    public static Comment dtoToEntity(CommentDTO dto, Forum forum) {
         // 예외 발생
         if(dto.getId() != null){
             throw new IllegalArgumentException("댓글 생성 실패! 댓글의 id가 없어야 합니다.");
         }
-        if(dto.getArticleId() != article.getId()) {
+        if(dto.getForumId() != forum.getId()) {
             throw new IllegalArgumentException("댓글 생성 실패! 게시글의 id가 잘못됐습니다.");
         }
 
@@ -45,7 +43,7 @@ public class Comment {
                 null,
                 dto.getNickname(),
                 dto.getBody(),
-                article
+                forum
         );
     }
 
@@ -54,8 +52,8 @@ public class Comment {
         if(this.id != dto.getId()){
             throw new IllegalArgumentException("댓글 수정 실패! 잘못된 comment id가 입력되었습니다.");
         }
-        if(this.getArticle().getId() != dto.getArticleId()){
-            throw new IllegalArgumentException("댓글 수정 실패! 잘못된 article id가 입력되었습니다.");
+        if(this.getForum().getId() != dto.getForumId()){
+            throw new IllegalArgumentException("댓글 수정 실패! 잘못된 forum id가 입력되었습니다.");
         }
 
         // 객체 갱신
@@ -68,4 +66,3 @@ public class Comment {
 
     }
 }
-

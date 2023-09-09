@@ -28,12 +28,12 @@ public class Forum {
     private String content;
 
     // 변경사항 업데이트
-    public void patch(Forum article) {
-        if(article.title != null){
-            this.title = article.title;
+    public void patch(Forum forum) {
+        if(forum.title != null){
+            this.title = forum.title;
         }
-        if(article.content != null){
-            this.content = article.content;
+        if(forum.content != null){
+            this.content = forum.content;
         }
     }
 }
