@@ -26,12 +26,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'mysql:mysql-connector-java:8.0.26'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-//	implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
-//	implementation 'org.hibernate:hibernate-core:5.6.0.Final'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 }
 
