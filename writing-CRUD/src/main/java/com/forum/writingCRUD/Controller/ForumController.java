@@ -125,7 +125,7 @@ public class ForumController {
 
         // 1. 삭제할 데이터 DB에서 가져오기
         Forum target = forumRepository.findById(id).orElse(null);
-        log.info(target.toString());
+//        log.info(target.toString());
 
         // 2. 대상 Entity가 존재하면 삭제
         if(target != null){

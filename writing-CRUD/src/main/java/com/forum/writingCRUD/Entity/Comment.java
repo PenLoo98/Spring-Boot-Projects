@@ -25,7 +25,8 @@ public class Comment {
     @Column(name = "body")
     private String body;
 
-    @ManyToOne
+    // 부모 Entity가 불러와질 때 같이 불러옴 -> 리소스 절약
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="forum_id")
     private Forum forum;
 

@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @ToString
@@ -26,6 +25,9 @@ public class Forum {
 
     @Column(name = "content")
     private String content;
+
+    @OneToMany(mappedBy = "forum", cascade=CascadeType.REMOVE)
+    private List<Comment> comments;
 
     // 변경사항 업데이트
     public void patch(Forum forum) {
