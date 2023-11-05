@@ -2,6 +2,7 @@ package com.chatting.realtimechat.config;
 
 import com.chatting.realtimechat.Entity.ChatMessage;
 import com.chatting.realtimechat.Entity.MessageType;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
